@@ -27,6 +27,11 @@
                     <a href="{{ route('admin.projects.edit',$project) }}" class="btn btn-warning">EDIT</a>
                     <button id="myBtn" class="btn btn-danger delete" style="width: fit-content">DELETE</button>
                 </div>
+                <ul class="d-flex gap-2 ps-0">
+                    @foreach ($project->technologies as $technology)
+                      <li class="badge rounded-pill text-bg-primary">{{ $technology->name }}</li>
+                    @endforeach 
+                  </ul>
                 <div id="bgForm" class="bg-form">
                 <div class="d-flex gap-3 delete-form">
                     <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">

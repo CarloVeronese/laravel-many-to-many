@@ -46,13 +46,21 @@
         </select>
       </div>
 
-      {{-- <div class="mb-3">
-        <label for="github_link" class="form-label">Github Link</label>
-        <input type="text" class="form-control" name="github_link" id="github_link" placeholder="Github Link">
-      </div> --}}
+      <div class="form-group mb-3">
+        <p>Select Technologies:</p>
+        <div class="d-flex flex-wrap gap-4 ">
+          @foreach ($technologies as $technology)
+            <div class="form-check">
+              <input name="technologies[]" class="form-check-input" type="checkbox" value="{{$technology->id}}" id="technology-{{$technology->id}}" @checked( in_array($technology->id, old('technologies',[]) ) ) >
+              <label class="form-check-label" for="technology-{{$technology->id}}">
+                {{ $technology->name }}
+              </label>
+            </div>
+          @endforeach
+        </div>
 
-      <div class="">
-        <input type="submit" class="btn btn-primary" value="create">
+      <div class="mt-3">
+        <input type="submit" class="btn btn-primary" value="Create">
       </div>
     </form>
   </div>

@@ -47,7 +47,19 @@
             <input type="text" class="form-control" name="github_link" id="github_link" placeholder="Project Githubù Link"
                 value="{{ old('github_link', $project->github_link) }}" readonly>
         </div>
-        <div class="mb-3">
+        <div class="form-group mb-3">
+            <p>Select Technologies:</p>
+            <div class="d-flex flex-wrap gap-4 ">
+              @foreach ($technologies as $technology)
+                <div class="form-check">
+                  <input name="technologies[]" class="form-check-input" type="checkbox" value="{{$technology->id}}" id="technology-{{$technology->id}}" @checked( in_array($technology->id, old('technologies',$project->technologies->pluck('id')->all()) ) ) >
+                  <label class="form-check-label" for="technology-{{$technology->id}}">
+                    {{ $technology->name }}
+                  </label>
+                </div>
+              @endforeach
+            </div>
+        <div class="mb-3 my-3">
             <input type="submit" class="btn btn-warning" value="Save">
         </div>
     </form>
